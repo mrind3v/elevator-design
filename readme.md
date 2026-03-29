@@ -1,0 +1,1 @@
+![UML diagram](static/elevator-design-uml.png)
