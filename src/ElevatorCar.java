@@ -8,7 +8,7 @@ public class ElevatorCar {
     private double currentWeight = 0;
     private final double maxWeight;
     private List<FloorObserver> observers = new ArrayList<>();
-    private TreeSet<Integer> destinationQueue = new TreeSet<>();
+    private Queue<Integer> destinationQueue = new LinkedList<>();
 
     public ElevatorCar(int id, double maxWeight) {
         this.id = id;
@@ -28,7 +28,7 @@ public class ElevatorCar {
         }
 
         // Logic to move one floor at a time toward the next destination
-        int nextFloor = destinationQueue.first();
+        int nextFloor = destinationQueue.peek();
         if (nextFloor > currentFloor) {
             currentFloor++;
             direction = Direction.UP;
@@ -38,7 +38,7 @@ public class ElevatorCar {
         }
 
         if (currentFloor == nextFloor) {
-            destinationQueue.pollFirst();
+            destinationQueue.poll();
             if (destinationQueue.isEmpty()) direction = Direction.IDLE;
         }
 
